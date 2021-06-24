@@ -1,0 +1,26 @@
+package com.apartment.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.apartment.bean.LoginUser;
+
+@Mapper
+public interface LoginUserDAO {
+	public LoginUser getUserByName(String username);
+	public List<LoginUser> login(LoginUser loginUser);
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.apartment.dao.LoginUserDAO">   
+    <select id="getUserByName" parameterType="String" resultType="com.apartment.bean.LoginUser">  
+        SELECT * FROM loginuser WHERE username = #{username};
+    </select>
+	<select id="login" parameterType="com.apartment.bean.LoginUser" resultType="com.apartment.bean.LoginUser">  
+        SELECT * FROM loginuser WHERE username = #{username} and password = #{password};
+    </select>  
+</mapper> 
